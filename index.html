@@ -3,252 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Golden Legacy 2026</title>
+    <title>THE LEGACY 2026 | Full Masterpiece</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@200;400;600&display=swap');
 
         :root {
-            --gold: #d4af37;
-            --gold-gradient: linear-gradient(45deg, #8a6d3b, #f1d592, #d4af37, #f1d592, #8a6d3b);
-            --bg-dark: #020408;
+            --gold: #c5a059;
+            --gold-light: #f1d592;
+            --bg-dark: #05070a;
             --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(212, 175, 55, 0.2);
+            --border-gold: rgba(197, 160, 89, 0.3);
+            --shadow-gold: 0 0 30px rgba(197, 160, 89, 0.2);
         }
 
-        /* --- 1. PREMIUM LOADING SCREEN --- */
-        #loader-wrapper {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-dark); z-index: 99999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-        }
-        .loader-logo {
-            font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--gold);
-            letter-spacing: 10px; margin-bottom: 20px; animation: glow 2s infinite;
-        }
-        .progress-container { width: 250px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
-        .progress-bar { width: 0%; height: 100%; background: var(--gold); animation: load 5s linear forwards; }
-        
-        @keyframes load { to { width: 100%; } }
-        @keyframes glow { 0%, 100% { text-shadow: 0 0 10px var(--gold); } 50% { text-shadow: 0 0 30px var(--gold); opacity: 0.5; } }
-
-        /* --- 2. GLOBAL STYLES --- */
-        * { box-sizing: border-box; scroll-behavior: smooth; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
-            margin: 0; background: var(--bg-dark); color: #fff;
+            margin: 0; background-color: var(--bg-dark); color: #fff;
             font-family: 'Montserrat', sans-serif; overflow-x: hidden;
+            background-image: radial-gradient(circle at center, #0d1117 0%, #05070a 100%);
         }
 
-        /* Cinematic Background */
-        .stars {
+        /* --- LOADING SCREEN --- */
+        #preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #0a111f 0%, #020408 100%);
-            z-index: -2;
+            background: #000; z-index: 999999; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; transition: 1.5s ease;
         }
-        .gold-dust {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.2; z-index: -1; pointer-events: none;
-        }
+        .preloader-logo { font-family: 'Cinzel'; font-size: 2.5rem; color: var(--gold); letter-spacing: 12px; animation: glow 2s infinite; }
+        @keyframes glow { 0%, 100% { opacity: 0.3; text-shadow: 0 0 0px var(--gold); } 50% { opacity: 1; text-shadow: 0 0 20px var(--gold); } }
 
-        /* --- 3. HERO HEADER --- */
+        /* --- HEADER --- */
         header {
-            height: 100vh; display: flex; flex-direction: column;
+            height: 60vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border-gold);
         }
-        .hero-sub { letter-spacing: 8px; font-weight: 200; opacity: 0.7; font-size: 0.9rem; margin-bottom: 10px; }
         .hero-title {
-            font-family: 'Cinzel', serif; font-size: clamp(3rem, 8vw, 6rem);
-            background: var(--gold-gradient); -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; margin: 0; padding: 0 20px;
+            font-family: 'Cinzel', serif; font-size: clamp(2rem, 7vw, 5rem);
+            background: linear-gradient(to right, #8a6d3b, #f1d592, #8a6d3b);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin: 0; font-weight: 900; letter-spacing: 4px;
         }
 
-        /* --- 4. CONTAINER & TITLES --- */
-        .container { max-width: 1200px; margin: auto; padding: 100px 20px; }
-        .section-box { margin-bottom: 120px; }
-        .title-wrapper { text-align: center; margin-bottom: 60px; }
-        .title-wrapper h2 {
-            font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--gold);
-            letter-spacing: 5px; margin: 0;
-        }
-        .gold-line { width: 80px; height: 1px; background: var(--gold); margin: 20px auto; opacity: 0.5; }
+        /* --- CONTAINER & GRID (2 COLUMNS) --- */
+        .container { max-width: 1000px; margin: auto; padding: 40px 15px; }
+        .section-title { text-align: center; margin: 80px 0 40px 0; }
+        .section-title h2 { font-family: 'Cinzel'; font-size: 1.8rem; color: var(--gold); letter-spacing: 6px; margin: 0; }
+        .gold-line { width: 60px; height: 1px; background: var(--gold); margin: 15px auto; opacity: 0.4; }
 
-        /* --- 5. GRID SYSTEM (STRICT 2 COLUMNS) --- */
         .photo-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 Kolom Tetap */
+            gap: 20px;
         }
 
-        /* Luxury Card */
+        /* --- LUXURY CARD --- */
         .card {
-            background: var(--glass); border: 1px solid var(--border);
-            border-radius: 8px; overflow: hidden; position: relative;
-            transition: 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-            backdrop-filter: blur(10px);
+            position: relative; background: var(--glass);
+            border: 1px solid var(--border-gold); padding: 8px;
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            cursor: pointer; overflow: hidden;
         }
-        .card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 15px 40px rgba(0,0,0,0.8); }
-
-        .img-wrap { width: 100%; overflow: hidden; position: relative; }
-        .img-3-4 { aspect-ratio: 3/4; }
-        .img-16-9 { aspect-ratio: 16/9; }
-        
-        img, video { width: 100%; height: 100%; object-fit: cover; transition: 1s ease; }
-        .card:hover img { transform: scale(1.1); filter: brightness(1.2); }
-
-        .name-box { padding: 20px; text-align: center; border-top: 1px solid var(--border); }
-        .name-box .name { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.1rem; letter-spacing: 2px; font-weight: 700; }
-        .name-box .role { font-size: 0.7rem; opacity: 0.5; margin-top: 5px; letter-spacing: 3px; }
-
-        /* --- 6. FLOATING ELEMENTS --- */
-        .drop { position: fixed; top: -50px; z-index: 9999; pointer-events: none; animation: fall linear forwards; }
-        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
-
-        /* Audio Player Custom */
-        .music-player {
-            position: fixed; bottom: 30px; right: 30px; z-index: 100;
-            background: rgba(0,0,0,0.8); padding: 10px; border-radius: 40px;
-            border: 1px solid var(--gold); display: flex; align-items: center;
+        .card::before { /* Ornamen Sudut */
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                linear-gradient(var(--gold), var(--gold)) top left / 12px 1px no-repeat,
+                linear-gradient(var(--gold), var(--gold)) top left / 1px 12px no-repeat,
+                linear-gradient(var(--gold), var(--gold)) bottom right / 12px 1px no-repeat,
+                linear-gradient(var(--gold), var(--gold)) bottom right / 1px 12px no-repeat;
+            opacity: 0.3; transition: 0.5s;
         }
+        .card:hover { transform: translateY(-8px); border-color: var(--gold-light); box-shadow: var(--shadow-gold); }
+        .card:hover::before { opacity: 1; }
 
-        footer { text-align: center; padding: 100px 20px; opacity: 0.4; letter-spacing: 4px; font-size: 0.8rem; }
+        .img-wrap { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: #000; }
+        .img-wide { aspect-ratio: 16/9; }
+        img, video { width: 100%; height: 100%; object-fit: cover; transition: 1.2s; filter: brightness(0.8); }
+        .card:hover img, .card:hover video { transform: scale(1.1); filter: brightness(1); }
+
+        .name-box { padding: 12px 5px; text-align: center; }
+        .name-box .name { font-family: 'Cinzel'; font-size: 0.7rem; color: var(--gold-light); font-weight: 700; letter-spacing: 1px; line-height: 1.3; }
+
+        /* --- MODAL DETAIL --- */
+        #modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98); z-index: 999999;
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; transition: 0.5s; backdrop-filter: blur(15px);
+        }
+        .modal-content { max-width: 90%; max-height: 80vh; position: relative; transform: scale(0.9); transition: 0.5s; }
+        #modal.active .modal-content { transform: scale(1); }
+        .modal-media { max-width: 100%; max-height: 70vh; border: 1px solid var(--gold); box-shadow: var(--shadow-gold); }
+        .modal-name { margin-top: 20px; font-family: 'Cinzel'; color: var(--gold); font-size: 1.2rem; letter-spacing: 3px; text-align: center; }
+        .close-btn { position: absolute; top: -50px; right: 0; color: #fff; font-size: 1rem; cursor: pointer; letter-spacing: 2px; font-family: 'Cinzel'; }
+
+        .music-player { position: fixed; bottom: 20px; right: 20px; z-index: 100; background: rgba(0,0,0,0.8); border: 1px solid var(--gold); padding: 5px; border-radius: 50px; }
+        footer { text-align: center; padding: 60px; opacity: 0.3; letter-spacing: 4px; font-family: 'Cinzel'; font-size: 0.6rem; border-top: 1px solid var(--border-gold); }
+
+        @media (max-width: 500px) {
+            .photo-grid { gap: 12px; }
+            .hero-title { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="loader-wrapper">
-        <div class="loader-logo">MMXXVI</div>
-        <div class="progress-container"><div class="progress-bar"></div></div>
-        <p style="color: #666; font-size: 0.7rem; margin-top: 15px; letter-spacing: 3px;">ESTABLISHING LEGACY</p>
-    </div>
-
-    <div class="stars"></div>
-    <div class="gold-dust"></div>
+    <div id="preloader"><div class="preloader-logo">MMXXVI</div></div>
 
     <header>
-        <span class="hero-sub">SPECIAL MEMORIES FOR</span>
+        <div style="letter-spacing: 8px; opacity: 0.6; font-size: 0.7rem;">THE GOLDEN ARCHIVE</div>
         <h1 class="hero-title">CLASS OF 2026</h1>
         <div class="gold-line"></div>
     </header>
 
     <div class="music-player">
-        <audio controls loop><source src="SAMPAI JADI DEBU - Banda Naira Lyrics.mp3" type="audio/mpeg"></audio>
+        <audio id="mainAudio" controls loop style="height: 30px;"><source src="SAMPAI JADI DEBU - Banda Naira Lyrics.mp3" type="audio/mpeg"></audio>
     </div>
 
     <div class="container">
         
-        <div class="section-box">
-            <div class="title-wrapper"><h2>CLASS PHOTO OF 2026</h2><div class="gold-line"></div></div>
+        <section>
+            <div class="section-title"><h2>THE MEMBERS</h2><div class="gold-line"></div></div>
             <div class="photo-grid">
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1523.JPG"></div><div class="name-box"><div class="name">AHMAD ABIL JA'FAR SHODIQ</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1525.JPG"></div><div class="name-box"><div class="name">AHMAD WIDAD NAUFAL</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1526.JPG"></div><div class="name-box"><div class="name">MOH RONI</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1527.JPG"></div><div class="name-box"><div class="name">DAVIN BAKHTIAR SAPUTRA</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1528.JPG"></div><div class="name-box"><div class="name">MUHAMMAD NURUL ABDI</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1529.JPG"></div><div class="name-box"><div class="name">HAFIZAL HAWWAZ</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1530.JPG"></div><div class="name-box"><div class="name">MUHAMMAD FITRA AL FAWWAZ</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1531.JPG"></div><div class="name-box"><div class="name">FAZLUR ROHMAN ASSALABI</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1532.JPG"></div><div class="name-box"><div class="name">AINUL WAFI</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1533.JPG"></div><div class="name-box"><div class="name">FAISAL AFDHAL AULIA</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1534.JPG"></div><div class="name-box"><div class="name">AGUNG PRASETYO</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1535.JPG"></div><div class="name-box"><div class="name">TOBY AHMAD MUNAJJAH</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1536.JPG"></div><div class="name-box"><div class="name">MUHAMMAD FARIZQI AZMI</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1522.JPG"></div><div class="name-box"><div class="name">MUHAMMAD ANTON</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1537.JPG"></div><div class="name-box"><div class="name">MUHAMMAD RAYYAN AQSHA RADITYA</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1538.JPG"></div><div class="name-box"><div class="name">MOHAMMAD 'A ISY IBENU NIZAR</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1539.JPG"></div><div class="name-box"><div class="name">ALFIAN BAGUS ZURIAT</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1540.JPG"></div><div class="name-box"><div class="name">ANDRA NICOLA SYAPUTRA</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1541.JPG"></div><div class="name-box"><div class="name">MOHAMMAD AGIET MAULANA IHSANDI</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1542.JPG"></div><div class="name-box"><div class="name">MUHAMMAD FAJRIL FALACH</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1544.JPG"></div><div class="name-box"><div class="name">MUHAMMAD NASYRUL MAHASIN</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1545.JPG"></div><div class="name-box"><div class="name">MUHAMAD FAHRI ZAM ZAMY</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1546.JPG"></div><div class="name-box"><div class="name">NAWWAL SAYYIDATUL KARIMAH</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1547.JPG"></div><div class="name-box"><div class="name">NUR FITHRI RIZQIYAH</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1549.JPG"></div><div class="name-box"><div class="name">SA'ADATUN NADIVA</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1550.JPG"></div><div class="name-box"><div class="name">SYAFIRA AKMAL LABIBAH</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1551.JPG"></div><div class="name-box"><div class="name">SYIFAUR RAHMAH</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1553.JPG"></div><div class="name-box"><div class="name">AFIKA SALSABILA</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1554.JPG"></div><div class="name-box"><div class="name">NABILLA AMALIA PUTRI</div><div class="role">CLASS OF 2026</div></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG_1555.JPG"></div><div class="name-box"><div class="name">NANDA FAHRIATUL MAHIROH</div><div class="role">CLASS OF 2026</div></div></div>
-                
+                <div class="card" data-name="AHMAD ABIL JA'FAR SHODIQ"><div class="img-wrap"><img src="IMG_1523.JPG"></div><div class="name-box"><div class="name">AHMAD ABIL JA'FAR</div></div></div>
+                <div class="card" data-name="AHMAD WIDAD NAUFAL"><div class="img-wrap"><img src="IMG_1525.JPG"></div><div class="name-box"><div class="name">AHMAD WIDAD NAUFAL</div></div></div>
+                <div class="card" data-name="MOH RONI"><div class="img-wrap"><img src="IMG_1526.JPG"></div><div class="name-box"><div class="name">MOH RONI</div></div></div>
+                <div class="card" data-name="DAVIN BAKHTIAR SAPUTRA"><div class="img-wrap"><img src="IMG_1527.JPG"></div><div class="name-box"><div class="name">DAVIN BAKHTIAR</div></div></div>
+                <div class="card" data-name="MUHAMMAD NURUL ABDI"><div class="img-wrap"><img src="IMG_1528.JPG"></div><div class="name-box"><div class="name">M. NURUL ABDI</div></div></div>
+                <div class="card" data-name="HAFIZAL HAWWAZ"><div class="img-wrap"><img src="IMG_1529.JPG"></div><div class="name-box"><div class="name">HAFIZAL HAWWAZ</div></div></div>
+                <div class="card" data-name="MUHAMMAD FITRA AL FAWWAZ"><div class="img-wrap"><img src="IMG_1530.JPG"></div><div class="name-box"><div class="name">M. FITRA AL FAWWAZ</div></div></div>
+                <div class="card" data-name="FAZLUR ROHMAN ASSALABI"><div class="img-wrap"><img src="IMG_1531.JPG"></div><div class="name-box"><div class="name">FAZLUR ROHMAN</div></div></div>
+                <div class="card" data-name="AINUL WAFI"><div class="img-wrap"><img src="IMG_1532.JPG"></div><div class="name-box"><div class="name">AINUL WAFI</div></div></div>
+                <div class="card" data-name="FAISAL AFDHAL AULIA"><div class="img-wrap"><img src="IMG_1533.JPG"></div><div class="name-box"><div class="name">FAISAL AFDHAL</div></div></div>
+                <div class="card" data-name="AGUNG PRASETYO"><div class="img-wrap"><img src="IMG_1534.JPG"></div><div class="name-box"><div class="name">AGUNG PRASETYO</div></div></div>
+                <div class="card" data-name="TOBY AHMAD MUNAJJAH"><div class="img-wrap"><img src="IMG_1535.JPG"></div><div class="name-box"><div class="name">TOBY AHMAD</div></div></div>
+                <div class="card" data-name="MUHAMMAD FARIZQI AZMI"><div class="img-wrap"><img src="IMG_1536.JPG"></div><div class="name-box"><div class="name">M. FARIZQI AZMI</div></div></div>
+                <div class="card" data-name="MUHAMMAD ANTON"><div class="img-wrap"><img src="IMG_1522.JPG"></div><div class="name-box"><div class="name">MUHAMMAD ANTON</div></div></div>
+                <div class="card" data-name="MUHAMMAD RAYYAN AQSHA RADITYA"><div class="img-wrap"><img src="IMG_1537.JPG"></div><div class="name-box"><div class="name">M. RAYYAN AQSHA</div></div></div>
+                <div class="card" data-name="MOHAMMAD 'A ISY IBENU NIZAR"><div class="img-wrap"><img src="IMG_1538.JPG"></div><div class="name-box"><div class="name">M. 'A ISY IBENU</div></div></div>
+                <div class="card" data-name="ALFIAN BAGUS ZURIAT"><div class="img-wrap"><img src="IMG_1539.JPG"></div><div class="name-box"><div class="name">ALFIAN BAGUS</div></div></div>
+                <div class="card" data-name="ANDRA NICOLA SYAPUTRA"><div class="img-wrap"><img src="IMG_1540.JPG"></div><div class="name-box"><div class="name">ANDRA NICOLA</div></div></div>
+                <div class="card" data-name="MOHAMMAD AGIET MAULANA IHSANDI"><div class="img-wrap"><img src="IMG_1541.JPG"></div><div class="name-box"><div class="name">M. AGIET MAULANA</div></div></div>
+                <div class="card" data-name="MUHAMMAD FAJRIL FALACH"><div class="img-wrap"><img src="IMG_1542.JPG"></div><div class="name-box"><div class="name">M. FAJRIL FALACH</div></div></div>
+                <div class="card" data-name="MUHAMMAD NASYRUL MAHASIN"><div class="img-wrap"><img src="IMG_1544.JPG"></div><div class="name-box"><div class="name">M. NASYRUL MAHASIN</div></div></div>
+                <div class="card" data-name="MUHAMAD FAHRI ZAM ZAMY"><div class="img-wrap"><img src="IMG_1545.JPG"></div><div class="name-box"><div class="name">M. FAHRI ZAM ZAMY</div></div></div>
+                <div class="card" data-name="NAWWAL SAYYIDATUL KARIMAH"><div class="img-wrap"><img src="IMG_1546.JPG"></div><div class="name-box"><div class="name">NAWWAL SAYYIDATUL</div></div></div>
+                <div class="card" data-name="NUR FITHRI RIZQIYAH"><div class="img-wrap"><img src="IMG_1547.JPG"></div><div class="name-box"><div class="name">NUR FITHRI R.</div></div></div>
+                <div class="card" data-name="SA'ADATUN NADIVA"><div class="img-wrap"><img src="IMG_1549.JPG"></div><div class="name-box"><div class="name">SA'ADATUN NADIVA</div></div></div>
+                <div class="card" data-name="SYAFIRA AKMAL LABIBAH"><div class="img-wrap"><img src="IMG_1550.JPG"></div><div class="name-box"><div class="name">SYAFIRA AKMAL</div></div></div>
+                <div class="card" data-name="SYIFAUR RAHMAH"><div class="img-wrap"><img src="IMG_1551.JPG"></div><div class="name-box"><div class="name">SYIFAUR RAHMAH</div></div></div>
+                <div class="card" data-name="AFIKA SALSABILA"><div class="img-wrap"><img src="IMG_1553.JPG"></div><div class="name-box"><div class="name">AFIKA SALSABILA</div></div></div>
+                <div class="card" data-name="NABILLA AMALIA PUTRI"><div class="img-wrap"><img src="IMG_1554.JPG"></div><div class="name-box"><div class="name">NABILLA AMALIA</div></div></div>
+                <div class="card" data-name="NANDA FAHRIATUL MAHIROH"><div class="img-wrap"><img src="IMG_1555.JPG"></div><div class="name-box"><div class="name">NANDA FAHRIATUL</div></div></div>
             </div>
-        </div>
+        </section>
 
-        <div class="section-box">
-            <div class="title-wrapper"><h2>TOGETHER PHOTO</h2><div class="gold-line"></div></div>
-            <div class="photo">
-                <div class="card"><div class="img-wrap img-16-9"><img src="IMG-20260416-WA0080.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-16-9"><img src="IMG-20260416-WA0092.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-16-9"><img src="IMG-20260411-WA0018.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-16-9"><img src="IMG-20260411-WA0013.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-16-9"><img src="IMG-20260416-WA0156.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-16-9"><img src="IMG-20260416-WA0173.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-16-9"><img src="IMG-20260416-WA0207.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-16-9"><img src="IMG-20260416-WA0222.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-16-9"><img src="IMG-20260416-WA0146.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-16-9"><img src="IMG-20260416-WA0129.jpg"></div></div>
-            </div>
-        </div>
-
-        <div class="section-box">
-            <div class="title-wrapper"><h2>RANDOM MOMENTS</h2><div class="gold-line"></div></div>
+        <section>
+            <div class="section-title"><h2>THE UNITY</h2><div class="gold-line"></div></div>
             <div class="photo-grid">
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG-20260416-WA0208.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG-20260416-WA0214.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG-20260416-WA0218.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG-20260416-WA0220.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG-20260416-WA0255.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG-20260416-WA0231.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG-20260416-WA0240.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG-20260416-WA0250.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG-20260416-WA0185.jpg"></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><img src="IMG-20260416-WA0163.jpg"></div></div>
+                <div class="card" data-name="TOGETHER I"><div class="img-wrap img-wide"><img src="IMG-20260416-WA0080.jpg"></div></div>
+                <div class="card" data-name="TOGETHER II"><div class="img-wrap img-wide"><img src="IMG-20260416-WA0092.jpg"></div></div>
+                <div class="card" data-name="TOGETHER III"><div class="img-wrap img-wide"><img src="IMG-20260411-WA0018.jpg"></div></div>
+                <div class="card" data-name="TOGETHER IV"><div class="img-wrap img-wide"><img src="IMG-20260411-WA0013.jpg"></div></div>
+                <div class="card" data-name="TOGETHER V"><div class="img-wrap img-wide"><img src="IMG-20260416-WA0156.jpg"></div></div>
+                <div class="card" data-name="TOGETHER VI"><div class="img-wrap img-wide"><img src="IMG-20260416-WA0173.jpg"></div></div>
+                <div class="card" data-name="TOGETHER VII"><div class="img-wrap img-wide"><img src="IMG-20260416-WA0207.jpg"></div></div>
+                <div class="card" data-name="TOGETHER VIII"><div class="img-wrap img-wide"><img src="IMG-20260416-WA0222.jpg"></div></div>
+                <div class="card" data-name="TOGETHER IX"><div class="img-wrap img-wide"><img src="IMG-20260416-WA0146.jpg"></div></div>
+                <div class="card" data-name="TOGETHER X"><div class="img-wrap img-wide"><img src="IMG-20260416-WA0129.jpg"></div></div>
             </div>
-        </div>
+        </section>
 
-        <div class="section-box">
-            <div class="title-wrapper"><h2>RANDOM STORY</h2><div class="gold-line"></div></div>
+        <section>
+            <div class="section-title"><h2>THE REELS</h2><div class="gold-line"></div></div>
             <div class="photo-grid">
-                <div class="card"><div class="img-wrap img-3-4"><video controls src="VID-20260416-WA0199.mp4"></video></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><video controls src="VID-20260416-WA0117.mp4"></video></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><video controls src="VID-20260416-WA0251.mp4"></video></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><video controls src="VID-20260416-WA0261.mp4"></video></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><video controls src="VID-20260416-WA0264.mp4"></video></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><video controls src="VID-20260416-WA0256.mp4"></video></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><video controls src="VID-20260416-WA0072.mp4"></video></div></div>
-                <div class="card"><div class="img-wrap img-3-4"><video controls src="VID-20260416-WA0071.mp4"></video></div></div>
+                <div class="card" data-name="STORY I"><div class="img-wrap"><video src="VID-20260416-WA0199.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video></div><div class="name-box"><div class="name">PLAY REEL I</div></div></div>
+                <div class="card" data-name="STORY II"><div class="img-wrap"><video src="VID-20260416-WA0117.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video></div><div class="name-box"><div class="name">PLAY REEL II</div></div></div>
+                <div class="card" data-name="STORY III"><div class="img-wrap"><video src="VID-20260416-WA0251.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video></div><div class="name-box"><div class="name">PLAY REEL III</div></div></div>
+                <div class="card" data-name="STORY IV"><div class="img-wrap"><video src="VID-20260416-WA0261.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video></div><div class="name-box"><div class="name">PLAY REEL IV</div></div></div>
+                <div class="card" data-name="STORY V"><div class="img-wrap"><video src="VID-20260416-WA0264.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video></div><div class="name-box"><div class="name">PLAY REEL V</div></div></div>
+                <div class="card" data-name="STORY VI"><div class="img-wrap"><video src="VID-20260416-WA0256.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video></div><div class="name-box"><div class="name">PLAY REEL VI</div></div></div>
+                <div class="card" data-name="STORY VII"><div class="img-wrap"><video src="VID-20260416-WA0072.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video></div><div class="name-box"><div class="name">PLAY REEL VII</div></div></div>
+                <div class="card" data-name="STORY VIII"><div class="img-wrap"><video src="VID-20260416-WA0071.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video></div><div class="name-box"><div class="name">PLAY REEL VIII</div></div></div>
             </div>
-        </div>
+        </section>
 
     </div>
 
-    <footer>
-        <p>THE GOLDEN LEGACY MMXXVI &copy; CLASS OF 2026</p>
-    </footer>
+    <div id="modal">
+        <span class="close-btn">[ CLOSE ]</span>
+        <div class="modal-content" id="modal-container"></div>
+        <div class="modal-name" id="modal-title"></div>
+    </div>
+
+    <footer>MMXXVI THE GOLDEN LEGACY &copy; 2026</footer>
 
     <script>
-        // PREMIUM LOADING 5s
+        // Preloader
         window.addEventListener('load', () => {
             setTimeout(() => {
-                const loader = document.getElementById('loader-wrapper');
-                loader.style.transition = '1.5s cubic-bezier(0.65, 0, 0.35, 1)';
-                loader.style.opacity = '0';
-                setTimeout(() => loader.remove(), 1500);
-            }, 5000);
+                const pre = document.getElementById('preloader');
+                pre.style.opacity = '0';
+                setTimeout(() => pre.remove(), 1000);
+            }, 2000);
         });
 
-        // GOLDEN DROPS EFFECT
-        function createDrop() {
-            const items = ['🎓', '✨', '⭐'];
-            const drop = document.createElement('div');
-            drop.classList.add('drop');
-            drop.innerHTML = items[Math.floor(Math.random() * items.length)];
-            drop.style.left = Math.random() * 100 + "vw";
-            drop.style.fontSize = Math.random() * 25 + 10 + "px";
-            drop.style.animationDuration = Math.random() * 3 + 4 + "s";
-            drop.style.opacity = Math.random() * 0.5;
-            document.body.appendChild(drop);
-            setTimeout(() => drop.remove(), 7000);
+        // Modal Logic
+        const modal = document.getElementById('modal');
+        const modalContainer = document.getElementById('modal-container');
+        const modalTitle = document.getElementById('modal-title');
+        const closeBtn = document.querySelector('.close-btn');
+        const mainAudio = document.getElementById('mainAudio');
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                const img = card.querySelector('img');
+                const vid = card.querySelector('video');
+                const name = card.getAttribute('data-name');
+
+                modalContainer.innerHTML = '';
+                if(img) {
+                    const clone = img.cloneNode();
+                    clone.className = 'modal-media';
+                    modalContainer.appendChild(clone);
+                } else if(vid) {
+                    const clone = vid.cloneNode();
+                    clone.className = 'modal-media';
+                    clone.controls = true;
+                    clone.muted = false;
+                    clone.play();
+                    modalContainer.appendChild(clone);
+                    // Pause main music when video plays
+                    mainAudio.pause();
+                }
+
+                modalTitle.innerText = name;
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.style.opacity = '1';
+                    modal.classList.add('active');
+                }, 50);
+            });
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                modalContainer.innerHTML = '';
+            }, 500);
         }
-        setInterval(createDrop, 400);
+
+        closeBtn.onclick = closeModal;
+        modal.onclick = (e) => { if(e.target === modal) closeModal(); };
     </script>
 </body>
 </html>
